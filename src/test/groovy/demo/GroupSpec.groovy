@@ -11,7 +11,6 @@ class GroupSpec extends Specification implements DomainUnitTest<Group> {
     def cleanup() {
     }
 
-
     void "test constrain"() {
         given:
         User user = new User(username: 'abc').save()
@@ -19,6 +18,7 @@ class GroupSpec extends Specification implements DomainUnitTest<Group> {
         Group group2 = new Group(name: 'group1', user: user)
 
         expect:
+        Group.count() == 2
         !group2.validate(['name'])
     }
 }
